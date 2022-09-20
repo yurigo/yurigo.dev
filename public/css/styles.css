@@ -1,0 +1,17 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.custom-font {
+    font-family: "Quicksand", sans-serif;
+}
