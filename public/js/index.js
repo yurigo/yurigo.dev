@@ -4,7 +4,7 @@ const useDark = window.matchMedia("(prefers-color-scheme: dark)");
 const glasses = document.getElementById("glasses")
 
 const changeButton = (state) => {
-    const icon = button.querySelector("span.i")
+    const icon = button.querySelector(".icon")
     icon.innerHTML = state ? '🌙' : '☀'
     glasses.style.opacity = state ? 0 : 1;
 }
@@ -73,6 +73,18 @@ document.addEventListener('mousemove', (event) => {
     changeEyesPosition(mouseX, mouseY)
 })
 
+function touch(event) {
+    // alert(event.touches[0].pageX)
+    mouseX = event.touches[0].pageX;
+    mouseY = event.touches[0].pageY;
+
+    changeEyesPosition(mouseX, mouseY)
+}
+
+document.addEventListener('touchstart', touch)
+document.addEventListener('touchmove', touch)
+document.addEventListener('touchend', touch)
+
 function withCenter(boundingBox) {
     boundingBox.centerX = (boundingBox.left + boundingBox.right) / 2
     boundingBox.centerY = (boundingBox.top + boundingBox.bottom) / 2
@@ -89,30 +101,33 @@ function changeEyesPosition(x, y) {
     const eyeLeftBox = withCenter(eyeLeft.getBoundingClientRect());
     const eyeRightBox = withCenter(eyeRight.getBoundingClientRect());
 
-    // div1.style.top = eyeLeftBox.centerY - (eyeLeftBox.centerY - y) * 0.005 + "px";
-    // div1.style.left = eyeLeftBox.centerX - (eyeLeftBox.centerX - x) * 0.005 + "px";
+    const transform = 0.05;
 
-    // div1.style.top = eyeLeftBox.centerY + "px"
-    // div1.style.left = eyeLeftBox.centerX + "px"
+    let eyeLeftNewX = -(eyeLeftBox.centerX - x) * transform;
+    let eyeLeftNewY = -(eyeLeftBox.centerY - y) * transform;
 
-    const eyeLeftNewX = -(eyeLeftBox.centerX - x) * 0.02;
-    const eyeLeftNewY = -(eyeLeftBox.centerY - y) * 0.02;
+    console.log(eyeLeftNewX, eyeLeftNewY)
 
-    const eyeRightNewX = -(eyeRightBox.centerX - x) * 0.02;
-    const eyeRightNewY = -(eyeRightBox.centerY - y) * 0.02;
+    let eyeRightNewX = -(eyeRightBox.centerX - x) * transform;
+    let eyeRightNewY = -(eyeRightBox.centerY - y) * transform;
 
-    // div1.style.translate = `${eyeLeftNewX}px ${eyeLeftNewY}px`
+    // @TODO refactor
+    // boundaries 
+    eyeLeftNewX = eyeLeftNewX > 30 ? 30 : eyeLeftNewX
+    eyeLeftNewY = eyeLeftNewY > 30 ? 30 : eyeLeftNewY
+    eyeRightNewX = eyeRightNewX > 30 ? 30 : eyeRightNewX
+    eyeRightNewY = eyeRightNewY > 30 ? 30 : eyeRightNewY
 
-    // eyeLeftBox.centerX = (eyeLeftBox.left + eyeLeftBox.right) / 2
-    //eyeLeftBox.centerY = (eyeLeftBox.left + eyeLeftBox.right) / 2
+    eyeLeftNewX = eyeLeftNewX < -30 ? -30 : eyeLeftNewX
+    eyeLeftNewY = eyeLeftNewY < -30 ? -30 : eyeLeftNewY
+    eyeRightNewX = eyeRightNewX < -30 ? -30 : eyeRightNewX
+    eyeRightNewY = eyeRightNewY < -30 ? -30 : eyeRightNewY
 
-    eyeLeft.style.translate = `${eyeLeftNewX}px ${eyeLeftNewY}px`;
-    eyeRight.style.translate = `${eyeRightNewX}px ${eyeRightNewY}px`;
-    // eyeRight.style.translate = `${eyeRightBox.centerX}px ${eyeRightBox.centerY}px`;
+    //eyeLeft.style.translate = `${eyeLeftNewX}px ${eyeLeftNewY}px`;
+    //eyeRight.style.translate = `${eyeRightNewX}px ${eyeRightNewY}px`;
 
-    // eyeLeft.style.translate = (x - eyeLeftBox.centerX) + "px " + (y - eyeLeftBox.centerY) + "px";
-    // eyeRight.style.translate = (x - eyeRightBox.centerX) + "px " + (y - eyeRightBox.centerY) + "px";
-
+    eyeLeft.style.transform = `translate( ${eyeLeftNewX}px , ${eyeLeftNewY}px)`;
+    eyeRight.style.transform = `translate( ${eyeRightNewX}px , ${eyeRightNewY}px)`;
 
 }
 

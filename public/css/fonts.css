@@ -1,5 +1,4 @@
 @font-face {
     font-family: "Segoe UI Emoji";
-    src: local("Segoe UI Emoji"),
-        url("/assets/font/seguiemj.ttf") format("truetype");
+    src: local("Segoe UI Emoji"), url("/fonts/seguiemj.ttf") format("truetype");
 }

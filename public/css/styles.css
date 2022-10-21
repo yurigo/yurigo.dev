@@ -5,6 +5,8 @@
     --text-color-value: 0, 0, 0;
     --shadow-opacity: 0.7;
     --text-color: rgb(var(--text-color-value));
+
+    /* touch-action: pan-x pan-y; */
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -33,6 +35,7 @@ body {
 
 body {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -69,6 +72,8 @@ svg {
 
 .i {
     font-family: "Segoe UI Emoji", sans-serif;
+    font-size: 1.75em;
+    display: inline-block;
 }
 
 .i.i-shadow {
@@ -76,7 +81,7 @@ svg {
 }
 
 .button-brutal {
-    padding: 3px 3px 7px 3px;
+    padding: 8px;
     border: 3px solid var(--text-color);
     border-radius: 5px;
     box-shadow: 5px 5px 0 0 rgb(var(--text-color-value), var(--shadow-opacity));
