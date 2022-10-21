@@ -2,7 +2,9 @@
     --background-hue: 0;
     --background-saturation: 80%;
     --background-lightness: 90%;
-    --text-color: black;
+    --text-color-value: 0, 0, 0;
+    --shadow-opacity: 0.7;
+    --text-color: rgb(var(--text-color-value));
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -19,7 +21,8 @@
     --background-hue: 360;
     --background-saturation: 50%;
     --background-lightness: 35%;
-    --text-color: white;
+    --shadow-opacity: 0.7;
+    --text-color-value: 255, 255, 255;
 }
 
 html,
@@ -57,5 +60,49 @@ body {
 }
 
 svg {
-    filter: drop-shadow(10px 5px 0 rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(1px 1px 0px rgb(0, 0, 0))
+        drop-shadow(-1px -1px 0px rgb(0, 0, 0))
+        drop-shadow(-1px 1px 0px rgb(0, 0, 0))
+        drop-shadow(1px -1px 0px rgb(0, 0, 0))
+        drop-shadow(10px 5px 0 rgba(0, 0, 0, 0.3));
+}
+
+.i {
+    font-family: "Segoe UI Emoji", sans-serif;
+}
+
+.i.i-shadow {
+    filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.3));
+}
+
+.button-brutal {
+    padding: 3px 3px 7px 3px;
+    border: 3px solid var(--text-color);
+    border-radius: 5px;
+    box-shadow: 5px 5px 0 0 rgb(var(--text-color-value), var(--shadow-opacity));
+    color: var(--text-color);
+    transform: all 500ms;
+}
+
+.button-brutal:hover {
+    translate: -2px -2px 0;
+    box-shadow: 6px 6px 0 1px
+        rgb(var(--text-color-value), var(--shadow-opacity));
+}
+
+.button-brutal:active {
+    translate: 2px 2px 0;
+    box-shadow: 4px 4px 0 -1px rgb(var(--text-color-value), var(--shadow-opacity));
+}
+
+.dummy {
+    position: fixed;
+    z-index: 1;
+    border: 1px solid deeppink;
+}
+
+.dummy-point {
+    margin: -2px 0 0 -2px;
+    border: 2px solid green;
+    position: fixed;
 }
