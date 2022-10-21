@@ -69,15 +69,12 @@ let mouseY = 0;
 document.addEventListener('mousemove', (event) => {
     mouseX = event.pageX;
     mouseY = event.pageY;
-
     changeEyesPosition(mouseX, mouseY)
 })
 
 function touch(event) {
-    // alert(event.touches[0].pageX)
     mouseX = event.touches[0].pageX;
     mouseY = event.touches[0].pageY;
-
     changeEyesPosition(mouseX, mouseY)
 }
 
@@ -105,8 +102,6 @@ function changeEyesPosition(x, y) {
 
     let eyeLeftNewX = -(eyeLeftBox.centerX - x) * transform;
     let eyeLeftNewY = -(eyeLeftBox.centerY - y) * transform;
-
-    console.log(eyeLeftNewX, eyeLeftNewY)
 
     let eyeRightNewX = -(eyeRightBox.centerX - x) * transform;
     let eyeRightNewY = -(eyeRightBox.centerY - y) * transform;
