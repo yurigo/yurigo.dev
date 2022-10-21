@@ -33,7 +33,7 @@ const changeBackgroundHUE = () => {
     root.style.setProperty('--background-hue', ++hue % 360)
 }
 
-// setInterval(changeBackgroundHUE, 50)
+setInterval(changeBackgroundHUE, 50)
 
 const eyeLeft = document.getElementById("eye_left")
 const eyeRight = document.getElementById("eye_right")
