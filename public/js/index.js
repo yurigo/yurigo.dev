@@ -93,37 +93,40 @@ function withCenter(boundingBox) {
 // div1.classList.add("dummy-point");
 // document.body.append(div1)
 
+const TRANSFORMATION = 1;
+const MAX_RADIUS = 25;
+
+function getTransformation(x, y, box) {
+    let nx = (x - box.centerX);
+    let ny = (y - box.centerY);
+
+    let distance = Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2))
+    let alpha = Math.atan(ny / nx)
+    alpha = nx < 0 ? alpha + Math.PI : alpha;
+
+    return `rotate( ${alpha}rad ) translate( ${Math.min(distance * TRANSFORMATION, MAX_RADIUS)}px )`;
+}
 
 function changeEyesPosition(x, y) {
-    const eyeLeftBox = withCenter(eyeLeft.getBoundingClientRect());
-    const eyeRightBox = withCenter(eyeRight.getBoundingClientRect());
 
-    const transform = 0.05;
+    // const eyeLeftBox = withCenter(eyeLeft.getBoundingClientRect());
+    // let eyeLeftNewX = (x - eyeLeftBox.centerX);
+    // let eyeLeftNewY = (y - eyeLeftBox.centerY);
+    // let distanceLeftEyeX = Math.sqrt(Math.pow(eyeLeftNewX, 2) + Math.pow(eyeLeftNewY, 2))
+    // let alphaLeftEye = Math.atan(eyeLeftNewY / eyeLeftNewX)
+    // alphaLeftEye = eyeLeftNewX < 0 ? alphaLeftEye + Math.PI : alphaLeftEye;
+    // eyeLeft.style.transform = `rotate( ${alphaLeftEye}rad ) translate( ${Math.min(distanceLeftEyeX * TRANSFORMATION, MAX_RADIUS)}px )`;
 
-    let eyeLeftNewX = -(eyeLeftBox.centerX - x) * transform;
-    let eyeLeftNewY = -(eyeLeftBox.centerY - y) * transform;
+    // const eyeRightBox = withCenter(eyeRight.getBoundingClientRect());
+    // let eyeRightNewX = (x - eyeRightBox.centerX);
+    // let eyeRightNewY = (y - eyeRightBox.centerY);
+    // let distanceRightEyeX = Math.sqrt(Math.pow(eyeRightNewX, 2) + Math.pow(eyeRightNewY, 2))
+    // let alphaRightEye = Math.atan(eyeRightNewY / eyeRightNewX)
+    // alphaRightEye = eyeRightNewX < 0 ? alphaRightEye + Math.PI : alphaRightEye;
+    // eyeRight.style.transform = `rotate( ${alphaRightEye}rad ) translate( ${Math.min(distanceRightEyeX * TRANSFORMATION, MAX_RADIUS)}px )`;
 
-    let eyeRightNewX = -(eyeRightBox.centerX - x) * transform;
-    let eyeRightNewY = -(eyeRightBox.centerY - y) * transform;
-
-    // @TODO refactor
-    // boundaries 
-    eyeLeftNewX = eyeLeftNewX > 30 ? 30 : eyeLeftNewX
-    eyeLeftNewY = eyeLeftNewY > 30 ? 30 : eyeLeftNewY
-    eyeRightNewX = eyeRightNewX > 30 ? 30 : eyeRightNewX
-    eyeRightNewY = eyeRightNewY > 30 ? 30 : eyeRightNewY
-
-    eyeLeftNewX = eyeLeftNewX < -30 ? -30 : eyeLeftNewX
-    eyeLeftNewY = eyeLeftNewY < -30 ? -30 : eyeLeftNewY
-    eyeRightNewX = eyeRightNewX < -30 ? -30 : eyeRightNewX
-    eyeRightNewY = eyeRightNewY < -30 ? -30 : eyeRightNewY
-
-    //eyeLeft.style.translate = `${eyeLeftNewX}px ${eyeLeftNewY}px`;
-    //eyeRight.style.translate = `${eyeRightNewX}px ${eyeRightNewY}px`;
-
-    eyeLeft.style.transform = `translate( ${eyeLeftNewX}px , ${eyeLeftNewY}px)`;
-    eyeRight.style.transform = `translate( ${eyeRightNewX}px , ${eyeRightNewY}px)`;
-
+    eyeLeft.style.transform = getTransformation(x, y, withCenter(eyeLeft.getBoundingClientRect()));
+    eyeRight.style.transform = getTransformation(x, y, withCenter(eyeRight.getBoundingClientRect()));
 }
 
 

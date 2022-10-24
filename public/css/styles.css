@@ -111,3 +111,9 @@ svg {
     border: 2px solid green;
     position: fixed;
 }
+
+#eye_left,
+#eye_right {
+    transform-box: fill-box;
+    transform-origin: center center;
+}
