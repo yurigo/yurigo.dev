@@ -8,13 +8,7 @@ importers:
 
   .:
     dependencies:
-      '@fontsource-variable/inter':
-        specifier: ^5.2.5
-        version: 5.2.5
       '@fontsource-variable/quicksand':
-        specifier: ^5.2.6
-        version: 5.2.6
-      '@fontsource/quicksand':
         specifier: ^5.2.6
         version: 5.2.6
       '@tailwindcss/vite':
@@ -216,14 +210,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@fontsource-variable/inter@5.2.5':
-    resolution: {integrity: sha512-TrWffUAFOnT8zroE9YmGybagoOgM/HjRqMQ8k9R0vVgXlnUh/vnpbGPAS/Caz1KIlOPnPGh6fvJbb7DHbFCncA==}
-
   '@fontsource-variable/quicksand@5.2.6':
     resolution: {integrity: sha512-+Ubadju6+8TEqRAjv3KHFf0N6vfPG/dZfxPTrj41jFcCJD+WWYeXwW5EVdbHw0Hy4UYGUA5E8JUQM1NkVh9qTA==}
-
-  '@fontsource/quicksand@5.2.6':
-    resolution: {integrity: sha512-MI1EO6ENXbmAxzwkxhLdCUKLLP6SGQ7IHLktuwOcS7llvK4Ni6QiqFCHZg40wpOfR0Z0FMCOJAqykf3QSqYpFA==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -1684,11 +1672,7 @@ snapshots:
   '@esbuild/win32-x64@0.25.2':
     optional: true
 
-  '@fontsource-variable/inter@5.2.5': {}
-
   '@fontsource-variable/quicksand@5.2.6': {}
-
-  '@fontsource/quicksand@5.2.6': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
