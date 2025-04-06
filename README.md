@@ -1,3 +1,0 @@
-# yurigo.dev
-
-My website 🦄
