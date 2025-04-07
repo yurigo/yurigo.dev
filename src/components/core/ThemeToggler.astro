@@ -1,0 +1,30 @@
+<button id="toggle"> </button>
+
+<style>
+  @reference "../../styles/global.css";
+  button {
+    position: relative;
+    font-family: "Segoe UI Emoji", sans-serif;
+    color: var(--text-color); /* ios-bug */
+    filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 0.3));
+    @apply p-1 text-3xl after:content-["☀️"] dark:after:content-["🌙"];
+    /* @apply dark:translate-y-2 rotate-180 dark:rotate-0 transition-transform duration-300 ease-in-out; */
+  }
+</style>
+
+<script is:inline>
+  const button = document.querySelector("#toggle");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+  toggleDarkMode(prefersDark.matches);
+
+  function toggleDarkMode(state) {
+    document.documentElement.setAttribute("data-theme", state ? "dark" : "");
+  }
+
+  prefersDark.addEventListener("change", (e) => toggleDarkMode(e.matches));
+
+  button.addEventListener("click", () => {
+    toggleDarkMode(document.documentElement.getAttribute("data-theme") === "");
+  });
+</script>
