@@ -1,0 +1,85 @@
+---
+import ThemeToggler from "@/components/core/ThemeToggler.astro";
+---
+
+<header class="p-4 text-end fixed top-0 left-0 right-0 z-10 backdrop-blur-md">
+  <ThemeToggler />
+  <div id="scroll-container" class="container mx-auto">
+    <div id="scroll-element" class="bg-black/30 shadow-2xs"></div>
+  </div>
+</header>
+
+<style>
+  #scroll-container {
+    top: 1rem;
+    position: relative;
+    margin: 0 auto;
+
+    animation: grow-y 0.3s linear both;
+    animation-timeline: scroll();
+  }
+
+  #scroll-element {
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    border-radius: 40px;
+
+    margin: 0 auto;
+
+    animation: grow-x ease-in both;
+    animation-timeline: scroll();
+  }
+
+  @keyframes grow-y {
+    0% {
+      width: 0%;
+    }
+
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes grow-x {
+    0% {
+      top: 0;
+      height: 0px;
+    }
+
+    5% {
+      top: -20px;
+      height: 40px;
+    }
+    13% {
+      top: 0px;
+      height: 1px;
+    }
+    100% {
+      top: 0;
+      height: 1px;
+    }
+  }
+
+  /* header {
+    background: transparent;
+    animation: header-blur-scroll 0.3s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 250px;
+    border-bottom: 1px solid transparent;
+  }
+
+  @keyframes header-blur-scroll {
+    0% {
+      backdrop-filter: blur(0px);
+      background: transparent;
+    }
+
+    100% {
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.5);
+      padding-bottom: var(--spacing-6);
+      border-bottom-color: black;
+    }
+  } */
+</style>

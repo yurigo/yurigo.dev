@@ -1381,6 +1381,14 @@
 <style>
   @reference "../../styles/global.css";
 
+  svg {
+    filter: drop-shadow(1px 1px 0px rgb(0, 0, 0))
+      drop-shadow(-1px -1px 0px rgb(0, 0, 0))
+      drop-shadow(-1px 1px 0px rgb(0, 0, 0))
+      drop-shadow(1px -1px 0px rgb(0, 0, 0))
+      drop-shadow(10px 5px 0 rgba(0, 0, 0, 0.3));
+  }
+
   #glasses {
     @apply translate-y-0 dark:-translate-y-56;
     @apply opacity-90 dark:opacity-0;

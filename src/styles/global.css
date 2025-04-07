@@ -48,11 +48,3 @@ body {
   /* transition: color 500ms, background-color 1000ms; */
   transition: color 1000ms ease-in-out;
 }
-
-svg {
-  filter: drop-shadow(1px 1px 0px rgb(0, 0, 0))
-    drop-shadow(-1px -1px 0px rgb(0, 0, 0))
-    drop-shadow(-1px 1px 0px rgb(0, 0, 0))
-    drop-shadow(1px -1px 0px rgb(0, 0, 0))
-    drop-shadow(10px 5px 0 rgba(0, 0, 0, 0.3));
-}
