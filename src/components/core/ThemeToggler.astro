@@ -16,10 +16,84 @@
   const button = document.querySelector("#toggle");
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-  toggleDarkMode(prefersDark.matches);
-
-  function toggleDarkMode(state) {
+  const toggleDarkModeWithoutAnimation = (state) => {
     document.documentElement.setAttribute("data-theme", state ? "dark" : "");
+  };
+
+  toggleDarkModeWithoutAnimation(prefersDark.matches);
+
+  async function toggleDarkMode(state) {
+    const currentValue = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--background-lightness");
+
+    // const newValue = state ? "30%" : "90%";
+    const x = animate(currentValue, state ? "30%" : "90%");
+
+    setTimeout(
+      () =>
+        document.documentElement.setAttribute(
+          "data-theme",
+          state ? "dark" : ""
+        ),
+      100
+    );
+
+    // document.documentElement.setAttribute("data-theme", state ? "dark" : "");
+  }
+
+  /**
+   * Se ha implementado una animación para el cambio de color de fondo.
+   * La animación consiste en cambiar el valor de la propiedad CSS
+   * --background-lightness de 0% a 100% o viceversa.
+   * La animación se realiza en 100 pasos.
+   * Se ha querido hacer con transition background-color, pero no funciona en Safari iOS,
+   * porque el hue está siendo animado vía keyframes y colisiona con el transition.
+   * Se ha optado por hacer una animación manual con setInterval.
+   * @param newValue {string} newValue - The new value to animate to.
+   * @returns {void}
+   */
+  function animate(currentValue, newValue) {
+    // const root = document.querySelector(":root");
+    const root = document.documentElement;
+
+    console.log(currentValue, newValue);
+
+    const animationDuration = 1000; // miliseconds
+    const animationFrames = 100; // number of frames for the animation
+
+    const step =
+      (parseFloat(newValue) - parseFloat(currentValue)) / animationFrames;
+    let currentStep = 0;
+
+    // return new Promise((resolve) => {
+    //   const interval = setInterval(() => {
+    //     currentStep++;
+    //     const newLightness = parseFloat(currentValue) + step * currentStep;
+
+    //     root.style.setProperty("--background-lightness", `${newLightness}%`);
+
+    //     if (currentStep >= animationFrames) {
+    //       clearInterval(interval);
+    //       console.log("Animation complete");
+    //       root.style.removeProperty("--background-lightness");
+    //       resolve("Animation complete");
+    //     }
+    //   }, animationDuration / animationFrames);
+    // });
+
+    const interval = setInterval(() => {
+      currentStep++;
+      const newLightness = parseFloat(currentValue) + step * currentStep;
+
+      root.style.setProperty("--background-lightness", `${newLightness}%`);
+
+      if (currentStep >= animationFrames) {
+        clearInterval(interval);
+        console.log("Animation complete");
+        root.style.removeProperty("--background-lightness");
+      }
+    }, animationDuration / animationFrames);
   }
 
   prefersDark.addEventListener("change", (e) => toggleDarkMode(e.matches));

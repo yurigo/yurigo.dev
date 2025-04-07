@@ -16,7 +16,39 @@ import Yuricon from "@components/core/Yuricon.astro";
   </div>
 </Layout>
 
-<style>
+<style is:global>
+  /* animate background-hue 0.5s linear; */
+
+  @property --background-hue {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+  }
+
+  /* @property --background-lightness {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 50%;
+  } */
+
+  body {
+    animation: rainbow-background-animation 10s linear infinite;
+
+    background-color: oklch(
+      var(--background-lightness) var(--background-saturation)
+        var(--background-hue)
+    );
+  }
+
+  @keyframes rainbow-background-animation {
+    0% {
+      --background-hue: 0;
+    }
+    100% {
+      --background-hue: 360;
+    }
+  }
+
   .landing {
     flex: 10;
     display: flex;
@@ -27,15 +59,13 @@ import Yuricon from "@components/core/Yuricon.astro";
 </style>
 
 <script>
-  const root = document.querySelector(":root");
-  let hue = Math.floor(Math.random() * 360);
-
-  const changeBackgroundHUE = () => {
-    hue = hue % 360; //reset please!
-    root.style.setProperty("--background-hue", ++hue % 360);
-  };
-
-  setInterval(changeBackgroundHUE, 50);
+  // const root = document.querySelector(":root");
+  // let hue = Math.floor(Math.random() * 360);
+  // const changeBackgroundHUE = () => {
+  //   hue = hue % 360; //reset please!
+  //   root.style.setProperty("--background-hue", ++hue % 360);
+  // };
+  // setInterval(changeBackgroundHUE, 50);
 
   const eyeLeft = document.getElementById("eye_left");
   const eyeRight = document.getElementById("eye_right");
