@@ -1,0 +1,147 @@
+---
+import JS from "../icons/JS.astro";
+import CSS from "../icons/CSS.astro";
+import HTML from "../icons/HTML.astro";
+import Vue from "../icons/Vue.astro";
+import AstroIcon from "../icons/AstroIcon.astro";
+import Badge from "../core/Badge.astro";
+import Laptop from "../icons/Laptop.astro";
+import School from "../icons/School.astro";
+import Bulb from "../icons/Bulb.astro";
+import Palette from "../icons/Palette.astro";
+import NodeJS from "../icons/NodeJS.astro";
+import MySQL from "../icons/MySQL.astro";
+import Express from "../icons/Express.astro";
+import VisualStudio from "../icons/VisualStudio.astro";
+import Vanilla from "../icons/Vanilla.astro";
+---
+
+<article
+  class="my-20 container mx-auto px-4 py-8 min-h-dvh prose dark:prose-invert lg:prose-xl
+  prose-h1:font-bold prose-h2:text-5xl prose-img:rounded-xl transition-all duration-1000"
+>
+  <header>
+    <h2>Sobre mi</h2>
+
+    <div
+      class="not-prose flex flex-row flex-wrap items-stretch justify-start text-start gap-3"
+    >
+      <Badge color="blue"
+        ><Laptop size="16" /> Full-Stack Software Engineer</Badge
+      >
+      <Badge color="yellow"><JS size="16" /> JavaScript</Badge>
+      <Badge color="purple"><CSS size="16" /> CSS</Badge>
+      <Badge color="orange"><HTML size="16" /> HTML</Badge>
+      <Badge color="green"><Vue size="16" /> Vue </Badge>
+      <Badge color="gray"><AstroIcon size="16" /> Astro</Badge>
+      <Badge color="red"><School size="16" />Coaching and mentoring</Badge>
+      <Badge color="indigo"
+        ><Bulb size="16" filled /> Software Craftsmanship</Badge
+      >
+      <Badge color="pink"><Palette size="16" /> Creative Programming</Badge>
+    </div>
+  </header>
+  <main class="mt-12">
+    <p>
+      Hola, soy <strong>Yuri</strong>, desarrollador fullstack y docente en
+      laSalle URL. Me considero un
+      <em>explorador digital a tiempo completo</em>. Escribo código desde que el
+      frontend era feo y el backend iba a pedales.
+    </p>
+    <p>
+      Mi historia empezó con <strong
+        class="inline-flex items-center gap-1 align-bottom"
+      >
+        <VisualStudio />
+        ASP.NET
+      </strong>
+      y <strong>VB.NET</strong> (traumas que todavía sigo superando), y evolucionó
+      hacia <em>stacks</em> más modernos como
+      <strong class="inline-flex items-center gap-1 align-bottom"
+        ><Vue />Vue</strong
+      > + <strong class="inline-flex items-center gap-1 align-bottom"
+        ><NodeJS /> Node.js</strong
+      >, donde me siento como en casa. Me he peleado con Access, mejorando el
+      camino con
+      <strong class="inline-flex items-center gap-1 align-bottom">
+        <MySQL /> MySQL
+      </strong>
+      , afinado APIs en <strong
+        class="inline-flex items-center gap-1 align-bottom"
+      >
+        <Express />Express</strong
+      > y desplegado proyectos en la nube.
+
+      <p>
+        Desde 2011 me dedico profesionalmente al desarrollo, con experiencia en
+        proyectos como
+        <a
+          href="https://triplei.es/Productos/Ergos/"
+          target="_blank"
+          rel="noopener">Ergos</a
+        > y
+        <a
+          href="https://triplei.es/Productos/m3/"
+          target="_blank"
+          rel="noopener">M3</a
+        >, y últimamente, side projects más visuales y experimentales como
+        <a href="https://astrobits.vercel.app/" target="_blank" rel="noopener"
+          >AstroBits</a
+        > o
+        <a href="https://rageguys.com/" target="_blank" rel="noopener"
+          >RageGuys</a
+        >.
+      </p>
+      <p>
+        Además de programar, enseño: imparto asignaturas como <strong
+          >Programación Web</strong
+        >, <strong>Programación Orientada a Objetos</strong>,
+        <strong>Desarrollo de Servicios en Línea</strong> y <strong
+          >Programación Creativa</strong
+        >. Mi estilo docente es directo:
+        <em>mob programming en vivo</em>, con ejemplos, errores reales y mucha
+        interacción. Me esfuerzo por que cada clase sea un proyecto en sí misma.
+      </p>
+      <p>
+        Me encantan los proyectos con alma visual. Prefiero el <strong
+          >frontend y la UI/UX</strong
+        > (aunque si hay que meter mano a un backend, no me tiembla el pulso). Disfruto
+        creando cosas inútiles pero bellas, como generadores de rageguys o experimentos
+        visuales.
+      </p>
+      <p>
+        ¿Mi objetivo? Seguir compartiendo, creando, y conectando con personas
+        que también vean en el código una forma de expresión creativa.
+      </p>
+
+      <p>
+        ¿Mi stack ideal? En el frontend, me muevo entre
+        <strong class="inline-flex items-center gap-1 align-bottom">
+          <Vanilla />
+          Vanilla
+        </strong>
+        ,
+        <strong class="inline-flex items-center gap-1 align-bottom">
+          <AstroIcon /> Astro
+        </strong>
+        o
+        <strong class="inline-flex items-center gap-1 align-bottom">
+          <Vue colorfull="true" />Vue
+        </strong>. En el backend,
+        <strong class="inline-flex items-center gap-1 align-bottom">
+          <span class="text-[#60A04E]"><NodeJS /> </span> Node.js
+        </strong>
+        . Pero lo que realmente importa no es el stack, sino la lo que creas con
+        él.
+      </p>
+
+      <style>
+        @reference "../../styles/global.css";
+
+        li a {
+          @apply inline-block align-middle p-2;
+        }
+      </style>
+    </p>
+  </main>
+</article>

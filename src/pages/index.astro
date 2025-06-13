@@ -2,7 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "@components/sections/Header.astro";
 import Splash from "@components/sections/Splash.astro";
-import Content from "@components/sections/Content.astro";
+import AboutMe from "@components/sections/AboutMe.astro";
+
+import Other from "@components/Other.astro";
+
+import Resources from "@components/sections/Resources.astro";
 import Footer from "@components/sections/Footer.astro";
 ---
 
@@ -10,7 +14,10 @@ import Footer from "@components/sections/Footer.astro";
   <Header />
   <main>
     <Splash />
-    <Content />
+    <Other>
+      <AboutMe />
+    </Other>
+    <Resources />
   </main>
   <Footer />
 </Layout>
