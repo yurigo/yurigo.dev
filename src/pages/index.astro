@@ -69,7 +69,7 @@ import Footer from "@components/sections/Footer.astro";
   const eyeRight = document.getElementById("eye_right");
   const mustacheGroup = document.getElementById("mustache-group");
   const mascotContainer = document.getElementById("mascot_container");
-  const FRONT_LOOK_TRANSFORM = "rotate(0rad) translate(0px)";
+  const FRONT_LOOK_TRANSFORM = "translate(0px, 0px)";
   let isMunching = false;
 
   let mouseX = window.innerWidth / 2;
@@ -113,17 +113,16 @@ import Footer from "@components/sections/Footer.astro";
   const MAX_MASCOT_OFFSET = 7;
 
   function getTransformation(x, y, box) {
-    let nx = x - box.centerX;
-    let ny = y - box.centerY;
+    const nx = x - box.centerX;
+    const ny = y - box.centerY;
 
-    let distance = Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2));
-    let alpha = Math.atan(ny / nx);
-    alpha = nx < 0 ? alpha + Math.PI : alpha;
+    const distance = Math.hypot(nx, ny);
+    const radius = Math.min(distance * TRANSFORMATION, MAX_RADIUS);
+    const safeDistance = distance || 1;
+    const tx = (nx / safeDistance) * radius;
+    const ty = (ny / safeDistance) * radius;
 
-    return `rotate( ${alpha}rad ) translate( ${Math.min(
-      distance * TRANSFORMATION,
-      MAX_RADIUS,
-    )}px )`;
+    return `translate(${tx}px, ${ty}px)`;
   }
 
   function changeEyesPosition(x, y) {
