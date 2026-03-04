@@ -3,7 +3,17 @@ import Yuricon from "@components/core/Yuricon.astro";
 ---
 
 <section class="flex flex-col items-center justify-center h-screen">
-  <Yuricon />
+  <div id="mascot_container" class="mascot-container">
+    <Yuricon />
+  </div>
 
   <h1 class="text-6xl font-extrabold">¡Hola!</h1>
 </section>
+
+<style>
+  .mascot-container {
+    transform: translate(var(--mascot-offset-x, 0px), var(--mascot-offset-y, 0px));
+    transition: transform 120ms linear;
+    will-change: transform;
+  }
+</style>

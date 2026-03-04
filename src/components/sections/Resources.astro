@@ -1,73 +1,136 @@
 ---
 import Github from "../icons/Github.astro";
-import SpaceInvader from "../icons/SpaceInvader.astro";
 ---
 
 <article
   class="container mt-20 mx-auto px-4 py-8 min-h-dvh prose dark:prose-invert lg:prose-xl
-  prose-ul:gap-0 prose-li:gap-0
   prose-h1:font-bold prose-h2:text-5xl prose-img:rounded-xl transition-all duration-1000"
 >
-  <h2>📚 Recursos 📚</h2>
+  <h2>Proyectos y recursos</h2>
+  <p>
+    Proyectos para acompañar las asignaturas. Cada uno incluye materiales de
+    estudio, ejercicios y ejemplos para apoyar el aprendizaje de los temas
+    tratados en clase.
+  </p>
 
-  <!-- <span
-    class="flex flex-row items-center justify-center gap-4 w-48 h-48 text-green-500"
-  >
-    <SpaceInvader />
-  </span> -->
-
-  <ul
-    role="list"
-    class="flex flex-col items-start justify-start gap-4 mt-8 text-start"
-  >
-    <li class="">
-      <a class="text-2xl" href="https://dsl.yurigo.dev" target="_blank"
-        >Desarrollo de servicios en linea</a
-      ><a
-        class="text-xl"
-        href="https://github.com/yurigo/DSL-2425"
-        target="_blank"><Github /></a
-      >
+  <ul role="list" class="project-grid mt-10 not-prose">
+    <li>
+      <article class="project-card">
+        <header>
+          <h3>Desarrollo de servicios en línea</h3>
+          <span class="project-tag">Backend · APIs</span>
+        </header>
+        <p>
+          Diseño y despliegue de servicios con foco en arquitectura y prácticas
+          de producción.
+        </p>
+        <footer>
+          <a href="https://dsl.yurigo.dev" target="_blank">Ver proyecto</a>
+          <a
+            class="project-github"
+            href="https://github.com/yurigo/DSL-2425"
+            target="_blank"
+            aria-label="Repositorio de Desarrollo de servicios en línea"
+          >
+            <Github />
+          </a>
+        </footer>
+      </article>
     </li>
 
     <li>
-      <a class="text-2xl" href="https://poo.yurigo.dev" target="_blank"
-        >Programación orientada a objetos
-      </a>
-      <a class="text-xl" href="https://github.com/yurigo/POO" target="_blank"
-        ><Github /></a
-      >
+      <article class="project-card">
+        <header>
+          <h3>Programación orientada a objetos</h3>
+          <span class="project-tag">Diseño · OOP</span>
+        </header>
+        <p>
+          Patrones de diseño, modelado y buenas prácticas para construir
+          software mantenible.
+        </p>
+        <footer>
+          <a href="https://poo.yurigo.dev" target="_blank">Ver proyecto</a>
+          <a
+            class="project-github"
+            href="https://github.com/yurigo/POO"
+            target="_blank"
+            aria-label="Repositorio de Programación orientada a objetos"
+          >
+            <Github />
+          </a>
+        </footer>
+      </article>
     </li>
 
     <li>
-      <a class="text-2xl" href="https://pei.yurigo.dev" target="_blank"
-        >Programación de entornos multimedia
-      </a>
-      <a
-        class="text-xl"
-        href="https://github.com/yurigo/PEI-2425"
-        target="_blank"><Github /></a
-      >
+      <article class="project-card">
+        <header>
+          <h3>Programación de entornos multimedia</h3>
+          <span class="project-tag">Media · UI</span>
+        </header>
+        <p>
+          Proyectos interactivos centrados en experiencia visual, audio y
+          narrativa digital.
+        </p>
+        <footer>
+          <a href="https://pei.yurigo.dev" target="_blank">Ver proyecto</a>
+          <a
+            class="project-github"
+            href="https://github.com/yurigo/PEI-2425"
+            target="_blank"
+            aria-label="Repositorio de Programación de entornos multimedia"
+          >
+            <Github />
+          </a>
+        </footer>
+      </article>
     </li>
+
     <li>
-      <a class="text-2xl" href="https://pmi.yurigo.dev" target="_blank"
-        >Programación web</a
-      >
-      <a
-        class="text-xl"
-        href="https://github.com/yurigo/PMI-2425"
-        target="_blank"><Github /></a
-      >
+      <article class="project-card">
+        <header>
+          <h3>Programación web</h3>
+          <span class="project-tag">Web · Frontend</span>
+        </header>
+        <p>
+          Fundamentos y proyectos prácticos para aprender desarrollo web
+          moderno.
+        </p>
+        <footer>
+          <a href="https://pmi.yurigo.dev" target="_blank">Ver proyecto</a>
+          <a
+            class="project-github"
+            href="https://github.com/yurigo/PMI-2425"
+            target="_blank"
+            aria-label="Repositorio de Programación web"
+          >
+            <Github />
+          </a>
+        </footer>
+      </article>
     </li>
+
     <li>
-      <a class="text-2xl" href="https://p5js.yurigo.dev" target="_blank"
-        >Programación creativa</a
-      >
-      <a
-        class="text-xl"
-        href="https://github.com/yurigo/p5.js-sketches"
-        target="_blank"><Github /></a
-      >
+      <article class="project-card">
+        <header>
+          <h3>Programación creativa</h3>
+          <span class="project-tag">p5.js · Arte</span>
+        </header>
+        <p>
+          Sketches y experimentos visuales para explorar creatividad con código.
+        </p>
+        <footer>
+          <a href="https://p5js.yurigo.dev" target="_blank">Ver proyecto</a>
+          <a
+            class="project-github"
+            href="https://github.com/yurigo/p5.js-sketches"
+            target="_blank"
+            aria-label="Repositorio de Programación creativa"
+          >
+            <Github />
+          </a>
+        </footer>
+      </article>
     </li>
   </ul>
 </article>
@@ -75,38 +138,48 @@ import SpaceInvader from "../icons/SpaceInvader.astro";
 <style>
   @reference "../../styles/global.css";
 
-  ul {
-    list-style: none; /* Oculta el marker nativo */
-    padding-left: 0;
+  .project-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
   }
 
-  li {
-    display: flex;
-    align-items: center; /* Centra verticalmente el icono y el texto */
-    gap: 0.5rem;
-    position: relative;
+  .project-card {
+    @apply h-full rounded-2xl p-5 border-2 border-black/60 dark:border-white/50;
+    @apply bg-white/70 dark:bg-neutral-900/60 backdrop-blur-md;
+    @apply transition-transform duration-200 ease-out;
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
   }
 
-  li::before {
-    content: "";
-    display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    background-image: url("/img/space-invader.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    flex-shrink: 0;
-    margin-right: 0.5rem;
-
-    filter: drop-shadow(1px 1px 0px rgb(0, 0, 0))
-      drop-shadow(-1px -1px 0px rgb(0, 0, 0))
-      drop-shadow(-1px 1px 0px rgb(0, 0, 0))
-      drop-shadow(1px -1px 0px rgb(0, 0, 0))
-      drop-shadow(5px 5px 0 rgba(0, 0, 0, 0.3));
+  .project-card:hover {
+    transform: translateY(-4px) scale(1.01);
   }
 
-  li a {
-    @apply inline-block align-middle p-2;
+  .project-card h3 {
+    @apply text-2xl font-extrabold leading-tight m-0;
+  }
+
+  .project-tag {
+    @apply inline-block mt-3 px-3 py-1 text-xs font-bold rounded-full;
+    @apply bg-black text-white dark:bg-white dark:text-black;
+  }
+
+  .project-card p {
+    @apply mt-4 mb-6 text-base leading-relaxed;
+  }
+
+  .project-card footer {
+    @apply flex items-center gap-3;
+  }
+
+  .project-card footer > a:first-child {
+    @apply text-base font-bold px-4 py-2 rounded-full border-2 border-black dark:border-white;
+  }
+
+  .project-github {
+    @apply text-2xl p-2 rounded-full border-2 border-black dark:border-white;
   }
 </style>

@@ -67,20 +67,27 @@ import Footer from "@components/sections/Footer.astro";
 
   const eyeLeft = document.getElementById("eye_left");
   const eyeRight = document.getElementById("eye_right");
+  const mascotContainer = document.getElementById("mascot_container");
 
-  let mouseX = 0;
-  let mouseY = 0;
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
 
   document.addEventListener("mousemove", (event) => {
     mouseX = event.pageX;
     mouseY = event.pageY;
     changeEyesPosition(mouseX, mouseY);
+    changeMascotPosition(mouseX, mouseY);
   });
 
   function touch(event) {
+    if (!event.touches.length) {
+      return;
+    }
+
     mouseX = event.touches[0].pageX;
     mouseY = event.touches[0].pageY;
     changeEyesPosition(mouseX, mouseY);
+    changeMascotPosition(mouseX, mouseY);
   }
 
   document.addEventListener("touchstart", touch);
@@ -96,6 +103,7 @@ import Footer from "@components/sections/Footer.astro";
 
   const TRANSFORMATION = 1;
   const MAX_RADIUS = 25;
+  const MAX_MASCOT_OFFSET = 7;
 
   function getTransformation(x, y, box) {
     let nx = x - box.centerX;
@@ -107,7 +115,7 @@ import Footer from "@components/sections/Footer.astro";
 
     return `rotate( ${alpha}rad ) translate( ${Math.min(
       distance * TRANSFORMATION,
-      MAX_RADIUS
+      MAX_RADIUS,
     )}px )`;
   }
 
@@ -115,12 +123,39 @@ import Footer from "@components/sections/Footer.astro";
     eyeLeft.style.transform = getTransformation(
       x,
       y,
-      withCenter(eyeLeft.getBoundingClientRect())
+      withCenter(eyeLeft.getBoundingClientRect()),
     );
     eyeRight.style.transform = getTransformation(
       x,
       y,
-      withCenter(eyeRight.getBoundingClientRect())
+      withCenter(eyeRight.getBoundingClientRect()),
     );
   }
+
+  function changeMascotPosition(x, y) {
+    if (!mascotContainer) {
+      return;
+    }
+
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    const normalizedX = (x - centerX) / centerX;
+    const normalizedY = (y - centerY) / centerY;
+
+    const offsetX = Math.max(-1, Math.min(1, normalizedX)) * MAX_MASCOT_OFFSET;
+    const offsetY = Math.max(-1, Math.min(1, normalizedY)) * MAX_MASCOT_OFFSET;
+
+    mascotContainer.style.setProperty(
+      "--mascot-offset-x",
+      `${offsetX.toFixed(2)}px`,
+    );
+    mascotContainer.style.setProperty(
+      "--mascot-offset-y",
+      `${offsetY.toFixed(2)}px`,
+    );
+  }
+
+  changeEyesPosition(mouseX, mouseY);
+  changeMascotPosition(mouseX, mouseY);
 </script>
