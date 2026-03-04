@@ -1,0 +1,33 @@
+---
+import Pacman from "../icons/Pacman.astro";
+---
+
+<div
+  id="eat-counter"
+  class="flex items-center gap-2 px-3 py-1 bg-black/30 rounded-full text-sm font-bold"
+>
+  <span class="text-amber-300">
+    <Pacman color="yellow" />
+  </span>
+  <span id="counter-value" class="">0</span>
+</div>
+
+<script>
+  const counterValue = document.getElementById("counter-value");
+
+  document.addEventListener("mascotEatsCursor", (event: CustomEvent) => {
+    if (counterValue) {
+      counterValue.textContent = event.detail.count.toString();
+    }
+  });
+</script>
+
+<style>
+  #eat-counter {
+    transition: transform 0.2s ease;
+  }
+
+  #eat-counter:hover {
+    transform: scale(1.1);
+  }
+</style>

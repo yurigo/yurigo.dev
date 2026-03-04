@@ -1,9 +1,13 @@
 ---
 import ThemeToggler from "@/components/core/ThemeToggler.astro";
+import Counter from "@/components/core/Counter.astro";
 ---
 
 <header class="p-4 text-end fixed top-0 left-0 right-0 z-10 backdrop-blur-md">
-  <ThemeToggler />
+  <div class="flex justify-between items-center gap-4">
+    <Counter />
+    <ThemeToggler />
+  </div>
   <div id="scroll-container" class="container mx-auto">
     <div id="scroll-element" class="bg-black/30 shadow-2xs"></div>
   </div>

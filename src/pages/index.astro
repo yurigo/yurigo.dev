@@ -71,6 +71,8 @@ import Footer from "@components/sections/Footer.astro";
   const mascotContainer = document.getElementById("mascot_container");
   const FRONT_LOOK_TRANSFORM_LEFT = "translate(10px, -5px)";
   const FRONT_LOOK_TRANSFORM_RIGHT = "translate(-10px, -5px)";
+
+  let eatCounter = 0; // Counter for how many times the mascot has eaten the cursor
   let isMunching = false;
 
   let mouseX = window.innerWidth / 2;
@@ -175,7 +177,12 @@ import Footer from "@components/sections/Footer.astro";
   if (mustacheGroup) {
     mustacheGroup.addEventListener("mouseenter", () => {
       isMunching = true;
+      eatCounter++;
       setFrontLook();
+      const eatEvent = new CustomEvent("mascotEatsCursor", {
+        detail: { count: eatCounter },
+      });
+      document.dispatchEvent(eatEvent);
     });
 
     mustacheGroup.addEventListener("mouseleave", () => {
