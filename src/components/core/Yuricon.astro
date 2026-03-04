@@ -1386,6 +1386,36 @@
     transform-box: fill-box;
     transform-origin: center center;
   }
+
+  #mustache-group {
+    transform-box: fill-box;
+    transform-origin: center center;
+    transition: transform 120ms ease-out;
+    will-change: transform;
+    cursor: none;
+  }
+
+  #mustache-group:hover {
+    animation: mustache-fly-chase 320ms ease-in-out 0s 6;
+  }
+
+  @keyframes mustache-fly-chase {
+    0% {
+      transform: translateY(0px) scaleY(1) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-13px) scaleY(0.96) rotate(0deg);
+    }
+    50% {
+      transform: translateY(11px) scaleY(1.04) rotate(-4deg);
+    }
+    75% {
+      transform: translateY(-5px) scaleY(01) rotate(0deg);
+    }
+    100% {
+      transform: translateY(0px) scaleY(1) rotate(0deg);
+    }
+  }
 </style>
 
 <script></script>
