@@ -69,7 +69,8 @@ import Footer from "@components/sections/Footer.astro";
   const eyeRight = document.getElementById("eye_right");
   const mustacheGroup = document.getElementById("mustache-group");
   const mascotContainer = document.getElementById("mascot_container");
-  const FRONT_LOOK_TRANSFORM = "translate(0px, 0px)";
+  const FRONT_LOOK_TRANSFORM_LEFT = "translate(10px, -5px)";
+  const FRONT_LOOK_TRANSFORM_RIGHT = "translate(-10px, -5px)";
   let isMunching = false;
 
   let mouseX = window.innerWidth / 2;
@@ -167,8 +168,8 @@ import Footer from "@components/sections/Footer.astro";
       return;
     }
 
-    eyeLeft.style.transform = FRONT_LOOK_TRANSFORM;
-    eyeRight.style.transform = FRONT_LOOK_TRANSFORM;
+    eyeLeft.style.transform = FRONT_LOOK_TRANSFORM_LEFT;
+    eyeRight.style.transform = FRONT_LOOK_TRANSFORM_RIGHT;
   }
 
   if (mustacheGroup) {
