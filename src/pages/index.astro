@@ -67,7 +67,10 @@ import Footer from "@components/sections/Footer.astro";
 
   const eyeLeft = document.getElementById("eye_left");
   const eyeRight = document.getElementById("eye_right");
+  const mustacheGroup = document.getElementById("mustache-group");
   const mascotContainer = document.getElementById("mascot_container");
+  const FRONT_LOOK_TRANSFORM = "rotate(0rad) translate(0px)";
+  let isMunching = false;
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
@@ -75,7 +78,9 @@ import Footer from "@components/sections/Footer.astro";
   document.addEventListener("mousemove", (event) => {
     mouseX = event.pageX;
     mouseY = event.pageY;
-    changeEyesPosition(mouseX, mouseY);
+    if (!isMunching) {
+      changeEyesPosition(mouseX, mouseY);
+    }
     changeMascotPosition(mouseX, mouseY);
   });
 
@@ -86,7 +91,9 @@ import Footer from "@components/sections/Footer.astro";
 
     mouseX = event.touches[0].pageX;
     mouseY = event.touches[0].pageY;
-    changeEyesPosition(mouseX, mouseY);
+    if (!isMunching) {
+      changeEyesPosition(mouseX, mouseY);
+    }
     changeMascotPosition(mouseX, mouseY);
   }
 
@@ -154,6 +161,27 @@ import Footer from "@components/sections/Footer.astro";
       "--mascot-offset-y",
       `${offsetY.toFixed(2)}px`,
     );
+  }
+
+  function setFrontLook() {
+    if (!eyeLeft || !eyeRight) {
+      return;
+    }
+
+    eyeLeft.style.transform = FRONT_LOOK_TRANSFORM;
+    eyeRight.style.transform = FRONT_LOOK_TRANSFORM;
+  }
+
+  if (mustacheGroup) {
+    mustacheGroup.addEventListener("mouseenter", () => {
+      isMunching = true;
+      setFrontLook();
+    });
+
+    mustacheGroup.addEventListener("mouseleave", () => {
+      isMunching = false;
+      changeEyesPosition(mouseX, mouseY);
+    });
   }
 
   changeEyesPosition(mouseX, mouseY);
