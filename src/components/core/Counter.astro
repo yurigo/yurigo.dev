@@ -14,10 +14,20 @@ import Pacman from "../icons/Pacman.astro";
 
 <script>
   const counterValue = document.getElementById("counter-value");
+  const eatCounter = document.getElementById("eat-counter");
 
   document.addEventListener("mascotEatsCursor", (event: CustomEvent) => {
     if (counterValue) {
       counterValue.textContent = event.detail.count.toString();
+    }
+
+    // Trigger pulse animation
+    if (eatCounter) {
+      eatCounter.classList.add("eating");
+
+      setTimeout(() => {
+        eatCounter.classList.remove("eating");
+      }, 400);
     }
   });
 </script>
@@ -29,5 +39,19 @@ import Pacman from "../icons/Pacman.astro";
 
   #eat-counter:hover {
     transform: scale(1.1);
+  }
+
+  #eat-counter.eating {
+    animation: pulse-scale 0.4s ease-in-out;
+  }
+
+  @keyframes pulse-scale {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
   }
 </style>
