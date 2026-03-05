@@ -12,7 +12,10 @@ import Yuricon from "@components/core/Yuricon.astro";
 
 <style>
   .mascot-container {
-    transform: translate(var(--mascot-offset-x, 0px), var(--mascot-offset-y, 0px));
+    transform: translate(
+      var(--mascot-offset-x, 0px),
+      var(--mascot-offset-y, 0px)
+    );
     transition: transform 120ms linear;
     will-change: transform;
   }

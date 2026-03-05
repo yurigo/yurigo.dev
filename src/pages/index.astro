@@ -12,7 +12,7 @@ import Footer from "@components/sections/Footer.astro";
 
 <Layout>
   <Header />
-  <main>
+  <main style="position: relative;">
     <Splash />
     <Other>
       <AboutMe />
@@ -72,19 +72,21 @@ import Footer from "@components/sections/Footer.astro";
   const FRONT_LOOK_TRANSFORM_LEFT = "translate(10px, -5px)";
   const FRONT_LOOK_TRANSFORM_RIGHT = "translate(-10px, -5px)";
 
-  let eatCounter = 0; // Counter for how many times the mascot has eaten the cursor
+  let eatCounter = 0;
   let isMunching = false;
+  let isUpdatingEyes = false;
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
+  let targetOffsetX = 0;
+  let targetOffsetY = 0;
 
   document.addEventListener("mousemove", (event) => {
-    mouseX = event.pageX;
-    mouseY = event.pageY;
+    mouseX = event.clientX;
+    mouseY = event.clientY;
     if (!isMunching) {
       changeEyesPosition(mouseX, mouseY);
     }
-    changeMascotPosition(mouseX, mouseY);
   });
 
   function touch(event) {
@@ -92,12 +94,11 @@ import Footer from "@components/sections/Footer.astro";
       return;
     }
 
-    mouseX = event.touches[0].pageX;
-    mouseY = event.touches[0].pageY;
+    mouseX = event.touches[0].clientX;
+    mouseY = event.touches[0].clientY;
     if (!isMunching) {
       changeEyesPosition(mouseX, mouseY);
     }
-    changeMascotPosition(mouseX, mouseY);
   }
 
   document.addEventListener("touchstart", touch);
@@ -113,7 +114,7 @@ import Footer from "@components/sections/Footer.astro";
 
   const TRANSFORMATION = 1;
   const MAX_RADIUS = 25;
-  const MAX_MASCOT_OFFSET = 7;
+  const FOLLOW_SPEED = 0.001;
 
   function getTransformation(x, y, box) {
     const nx = x - box.centerX;
@@ -129,40 +130,53 @@ import Footer from "@components/sections/Footer.astro";
   }
 
   function changeEyesPosition(x, y) {
-    eyeLeft.style.transform = getTransformation(
-      x,
-      y,
-      withCenter(eyeLeft.getBoundingClientRect()),
-    );
-    eyeRight.style.transform = getTransformation(
-      x,
-      y,
-      withCenter(eyeRight.getBoundingClientRect()),
-    );
+    if (isUpdatingEyes) return;
+    isUpdatingEyes = true;
+
+    requestAnimationFrame(() => {
+      if (eyeLeft) {
+        const leftRect = eyeLeft.getBoundingClientRect();
+        eyeLeft.style.transform = getTransformation(x, y, withCenter(leftRect));
+      }
+      if (eyeRight) {
+        const rightRect = eyeRight.getBoundingClientRect();
+        eyeRight.style.transform = getTransformation(
+          x,
+          y,
+          withCenter(rightRect),
+        );
+      }
+      isUpdatingEyes = false;
+    });
   }
 
-  function changeMascotPosition(x, y) {
+  function followCursor() {
     if (!mascotContainer) {
       return;
     }
 
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+    const mascotRect = mascotContainer.getBoundingClientRect();
+    const mascotCenterX = mascotRect.left + mascotRect.width / 2;
+    const mascotCenterY = mascotRect.top + mascotRect.height / 2;
 
-    const normalizedX = (x - centerX) / centerX;
-    const normalizedY = (y - centerY) / centerY;
+    const dx = mouseX - mascotCenterX;
+    const dy = mouseY - mascotCenterY;
 
-    const offsetX = Math.max(-1, Math.min(1, normalizedX)) * MAX_MASCOT_OFFSET;
-    const offsetY = Math.max(-1, Math.min(1, normalizedY)) * MAX_MASCOT_OFFSET;
+    // Super slow following towards cursor
+    targetOffsetX += dx * FOLLOW_SPEED;
+    targetOffsetY += dy * FOLLOW_SPEED;
 
+    // Update mascot position
     mascotContainer.style.setProperty(
       "--mascot-offset-x",
-      `${offsetX.toFixed(2)}px`,
+      `${targetOffsetX}px`,
     );
     mascotContainer.style.setProperty(
       "--mascot-offset-y",
-      `${offsetY.toFixed(2)}px`,
+      `${targetOffsetY}px`,
     );
+
+    requestAnimationFrame(followCursor);
   }
 
   function setFrontLook() {
@@ -192,5 +206,5 @@ import Footer from "@components/sections/Footer.astro";
   }
 
   changeEyesPosition(mouseX, mouseY);
-  changeMascotPosition(mouseX, mouseY);
+  followCursor();
 </script>
