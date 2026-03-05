@@ -12,7 +12,7 @@ import Footer from "@components/sections/Footer.astro";
 
 <Layout>
   <Header />
-  <main style="position: relative;">
+  <main>
     <Splash />
     <Other>
       <AboutMe />
@@ -57,14 +57,6 @@ import Footer from "@components/sections/Footer.astro";
 </style>
 
 <script>
-  // const root = document.querySelector(":root");
-  // let hue = Math.floor(Math.random() * 360);
-  // const changeBackgroundHUE = () => {
-  //   hue = hue % 360; //reset please!
-  //   root.style.setProperty("--background-hue", ++hue % 360);
-  // };
-  // setInterval(changeBackgroundHUE, 50);
-
   const eyeLeft = document.getElementById("eye_left");
   const eyeRight = document.getElementById("eye_right");
   const mustacheGroup = document.getElementById("mustache-group");
@@ -208,3 +200,5 @@ import Footer from "@components/sections/Footer.astro";
   changeEyesPosition(mouseX, mouseY);
   followCursor();
 </script>
+
+<style></style>
